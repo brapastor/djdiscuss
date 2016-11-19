@@ -20,7 +20,10 @@ DATABASES = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -56,3 +59,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '135213603618845'
+SOCIAL_AUTH_FACEBOOK_SECRET = '40f61e5e0418dd9f362152b44cabe463'
+
+SOCIAL_AUTH_TWITTER_KEY = 'TtaObKv9aSwTK3oqiMWXW1CqI'
+SOCIAL_AUTH_TWITTER_SECRET = 'dyLRsBzXjY3zUOLA9m1HsbFFX9qjTQllyRq4h9MsbyJ597Wdhb'

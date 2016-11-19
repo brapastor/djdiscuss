@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <h2>{{ user }} Bienvenido wachin </h2>
+    <form method="post">{% csrf_token %}
+        <p>
+            <label>Usuario</label>
+            <input type="text" name="username" value="{{ user.username }}">
+            {{ error_username }}
+        </p>
+        <p>
+            <label>Email</label>
+            <input type="text" name="email">
+            {{ error_email }}
+
+        </p>
+        <input type="submit" value="Guardar">
+    </form>
+{% endblock %}
