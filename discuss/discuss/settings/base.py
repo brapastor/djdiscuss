@@ -13,6 +13,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'discuss.apps.home',
     'discuss.apps.users',
+    'discuss.apps.discuss',
     'social.apps.django_app.default',
 ]
 
@@ -40,8 +41,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
 
 
 
