@@ -4,7 +4,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -15,7 +14,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 TEMPLATES = [
     {
@@ -31,11 +29,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social.apps.django_app.context_processors.backends',
             ],
         },
     },
 ]
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -52,15 +51,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-
-
 
 SOCIAL_AUTH_FACEBOOK_KEY = '135213603618845'
 SOCIAL_AUTH_FACEBOOK_SECRET = '40f61e5e0418dd9f362152b44cabe463'

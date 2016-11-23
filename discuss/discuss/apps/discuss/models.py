@@ -16,7 +16,7 @@ class Tag (models.Model):
     nombre = models.CharField(max_length=10)
 
     # para poder ver en el administrador
-    def __unicode__(self):
+    def __str__(self):
         return self.nombre
 
 class Question(TimeStampModel):
@@ -24,11 +24,11 @@ class Question(TimeStampModel):
     title = models.CharField(max_length=200)
 
     # para ver el el administrador
-    def __unicode__(self):
+    def __str__(self):
         return '%s %s' % (self.user, self.title)
 
 class Answer(TimeStampModel):
     question = models.ForeignKey(Question)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.user
