@@ -76,15 +76,21 @@
                             Top 5 de Preguntas:
                         </a>
                     </li>
+
+                     <li class="top">
+                        <a href="/preguntas">
+                           Ver todas las preguntas
+                        </a>
+                    </li>
                     <li>
                         <a href="#">
-                            <span class="badge pull-right badge-customize">42</span>
+                            <span class="badge pull-right badge-customize">{{ total_question }}</span>
                             Preguntas
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span class="badge pull-right badge-customize">1004</span>
+                            <span class="badge pull-right badge-customize">{{ total_users }}</span>
                             Usuarios
                         </a>
                     </li>
@@ -96,65 +102,25 @@
                     </li>
                 </ul>
 
-                <h4>¿Por qué me sale un error en la instalación Django en windows?
-                    <small>@Djeancar</small>
-                    <span><img src="{{ STATIC_URL }}img/djeancar.jpg" class="foto-perfil"></span></h4>
-                <blockquote class="bloquesito">
-                    <p class="bg-info bg-info-customize">Vistos <span>0</span></p>
-                    <p class="bg-warning bg-info-customize">Respuestas <span>0</span></p>
-                    <p class="bg-success bg-info-customize">Votos <span>0</span></p>
-                    <p class="bg-success bg-fecha-customize">Publicado hace: <span>30 min</span></p>
-                    <p class="tags">
-                        <span>Etiquetas:</span>
-                        <button type="button" class="btn btn-default btn-xs">Django 1.5</button>
-                        <button type="button" class="btn btn-default btn-xs">Django 1.6</button>
-                        <button type="button" class="btn btn-default btn-xs">Node</button>
-                    </p>
-                </blockquote>
+                {% for question, tags in question_list %}
+                    <h4>{{ question.title }}
+                        <small>{{ question.user }}</small>
+                        <span><img src="{{ question.user.avatar }}" class="foto-perfil"></span></h4>
+                    <blockquote class="bloquesito">
+                        <p class="bg-info bg-info-customize">Vistos <span>0</span></p>
+                        <p class="bg-warning bg-info-customize">Respuestas <span>0</span></p>
+                        <p class="bg-success bg-info-customize">Votos <span>0</span></p>
+                        <p class="bg-success bg-fecha-customize">Publicado hace: <span>{{ question.modified }}</span>
+                        </p>
+                        {% for tag in tags %}
+                            <p class="tags">
+                                <span>Etiquetas:</span>
+                                <button type="button" class="btn btn-default btn-xs">{{ tag.nombre }}</button>
+                            </p>
+                        {% endfor %}
+                    </blockquote>
+                {% endfor %}
 
-                <h4>¿Por qué me sale Error 500 en Django?
-                    <small>@Jhonazsh</small>
-                    <span><img src="{{ STATIC_URL }}img/jhonazsh.jpg" class="foto-perfil"></span></h4>
-                <blockquote class="bloquesito">
-                    <p class="bg-info bg-info-customize">Vistos <span>0</span></p>
-                    <p class="bg-warning bg-info-customize">Respuestas <span>0</span></p>
-                    <p class="bg-success bg-info-customize">Votos <span>0</span></p>
-                    <p class="bg-success bg-fecha-customize">Publicado hace: <span>3 hr</span></p>
-                    <p class="tags">
-                        <span>Etiquetas:</span>
-                        <button type="button" class="btn btn-default btn-xs">Node</button>
-                        <button type="button" class="btn btn-default btn-xs">Django 1.6</button>
-                    </p>
-                </blockquote>
-
-                <h4>¿Qué es mejor Vistas basadas en clases o vistas basadas en funciones?
-                    <small>@Edwinpgm</small>
-                    <span><img src="{{ STATIC_URL }}img/edwinpgm.jpg" class="foto-perfil"></span></h4>
-                <blockquote class="bloquesito">
-                    <p class="bg-info bg-info-customize">Vistos <span>0</span></p>
-                    <p class="bg-warning bg-info-customize">Respuestas <span>0</span></p>
-                    <p class="bg-success bg-info-customize">Votos <span>0</span></p>
-                    <p class="bg-success bg-fecha-customize">Publicado hace: <span>4 hr</span></p>
-                    <p class="tags">
-                        <span>Etiquetas:</span>
-                        <button type="button" class="btn btn-default btn-xs">VBC</button>
-                        <button type="button" class="btn btn-default btn-xs">VBF</button>
-                    </p>
-                </blockquote>
-
-                <h4>¿Cómo usar multisettings de django en un proyecto?
-                    <small>@Mayraisav</small>
-                    <span><img src="{{ STATIC_URL }}img/myraisav.jpg" class="foto-perfil"></span></h4>
-                <blockquote class="bloquesito">
-                    <p class="bg-info bg-info-customize">Vistos <span>0</span></p>
-                    <p class="bg-warning bg-info-customize">Respuestas <span>0</span></p>
-                    <p class="bg-success bg-info-customize">Votos <span>0</span></p>
-                    <p class="bg-success bg-fecha-customize">Publicado hace: <span>15 hr</span></p>
-                    <p class="tags">
-                        <span>Etiquetas:</span>
-                        <button type="button" class="btn btn-default btn-xs">Django 1.6</button>
-                    </p>
-                </blockquote>
 
             </div>
             <div class="col-md-4 contenido-aside">

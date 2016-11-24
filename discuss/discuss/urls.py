@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'$^', include('discuss.apps.home.urls', namespace='home')),
     url(r'^', include('discuss.apps.users.urls', namespace='users')),
+    url(r'^', include('discuss.apps.discuss.urls', namespace='discuss')),
     # PYTHON SOCIAL AUTH
     url('', include('social.apps.django_app.urls', namespace='social')),
 
