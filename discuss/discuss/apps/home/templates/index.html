@@ -34,8 +34,8 @@
                     <h1>Bienvenidos a DevAsk!</h1>
                     <p class="subtitulo-jumbotron">El Sistema de Discusiones para Programadores</p>
                     <p>
-                        <a href="preguntas/ask/">
-                            <button type="button" class="btn btn-primary btn-lg btn-pregunta">Has tu Pregunta!</button>
+                        <a href="/preguntar/">
+                            <button type="button" class="btn btn-primary btn-lg btn-pregunta">Haz tu Pregunta!</button>
                         </a>
                     </p>
                 </div>
@@ -103,7 +103,7 @@
                 </ul>
 
                 {% for question, tags in question_list %}
-                    <h4>{{ question.title }}
+                    <h4><a href="/pregunta/{{ question.slug }}">{{ question.title }}</a>
                         <small>{{ question.user }}</small>
                         <span><img src="{{ question.user.avatar }}" class="foto-perfil"></span></h4>
                     <blockquote class="bloquesito">
