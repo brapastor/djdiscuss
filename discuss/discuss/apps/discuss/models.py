@@ -42,4 +42,4 @@ class Answer(TimeStampModel):
     question = models.ForeignKey(Question)
 
     def __str__(self):
-        return self.user
+        return self.user.username

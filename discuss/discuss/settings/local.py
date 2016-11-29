@@ -62,3 +62,16 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '40f61e5e0418dd9f362152b44cabe463'
 
 SOCIAL_AUTH_TWITTER_KEY = 'TtaObKv9aSwTK3oqiMWXW1CqI'
 SOCIAL_AUTH_TWITTER_SECRET = 'dyLRsBzXjY3zUOLA9m1HsbFFX9qjTQllyRq4h9MsbyJ597Wdhb'
+
+
+CACHES = {
+    'default':{
+        'BACKEND' : 'redis_cache.RedisCache',
+        # 'LOCATION': 'grideye.redistogo.com:10097',
+        'LOCATION': 'localhost:6379',
+        'OPTIONS': {
+            'DB': 1,
+            # 'PASSWORD': 'TU_CONTRASENA',
+        }
+    }
+}

@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-
+{% load cache %}
 {% block content %}
 
     <div class="container">
@@ -8,15 +8,16 @@
             <div class="col-md-8">
                 <p class="tags">
                     <span>Busqueda por Etiquetas:</span>
-
-                    {% for tag in tags %}
-                        <button type="button" class="btn btn-default btn-xs">{{ tag.nombre }}</button>
-                    {% endfor %}
+                    {% cache 60 tags %}
+                        {% for tag in tags %}
+                            <button id="{{ tag.id }}" type="button"
+                                    class="btn btn-default btn-xs">{{ tag.nombre }}</button>
+                        {% endfor %}
+                    {% endcache %}
                 </p>
-
-                <div class="datos">
+                <div id="datos">
                     {% for question in questions %}
-                        <h4><a href="">{{ question.title }}</a>
+                        <h4><a href="/pregunta/{{ question.slug }}">{{ question.title }}</a>
                             <small>{{ question.user }}</small>
                             <span><img src="{{ question.user.avatar }}" class="foto-perfil"></span></h4>
                         <blockquote class="bloquesito">
@@ -60,36 +61,29 @@
     </div>
 {% endblock %}
 
-{% block js %}
+{% block script %}
     <script>
-        $('.btn-xs').on('click', inicio);
+        $('.btn-xs').on('click', HizeClick);
 
-        function inicio() {
+        function HizeClick() {
             var id = $(this).attr('id');
+            console.log(id);
             $.ajax({
                 data: {'id': id},
-                url: '/preguntas/busqueda_ajax/',
+                url: '/buscar-ajax/',
                 type: 'get',
                 success: function (data) {
-                    console.log(data);
-                    var html = "";
+                    var html;
                     for (var i = 0; i < data.length; i++) {
-                        html += '<div><hr><h4>' + data[i].fields.nombre + ' </h4><blockquote class="bloquesito"><p class="bg-info bg-info-customize">Vistos <span>0</span></p><p class="bg-warning bg-info-customize">Respuestas <span>0</span></p><p class="bg-success bg-info-customize">Votos <span>0</span></p><p class="bg-success bg-fecha-customize">Publicado hace: <span>30 min</span></p><p class="tags"><span>Etiquetas:</span>';
-
-                        for (var j = 0; j < data[i].fields.tag.length; j++) {
-                            html += '<button type="button" class="btn btn-default btn-xs">' + data[i].fields.tag[j] + '</button>  ';
-                        }
-
-                        html += '</p></blockquote></div>';
-
-                        //for(var j=0; j<data.len)
-                        //{% for tag in pregunta.tag.all %}<button type="button" class="btn btn-default btn-xs">
-                            {{tag.nombre}}</button >{% endfor %}</ p></ blockquote>';
-
+                        html += '<div><hr><h4><a href="/pregunta/' + data[i].fields.slug + '/">' + data[i].fields.title + '</a></h4> <blockquote class="bloquesito"><p class="bg-info bg-info-customize"> ' +
+                                'Vistos <span>0</span></p><p class="bg-warning bg-info-customize"> Respuestas <span>0</span></p>' +
+                                '<p class="bg-sucess bg-fecha-customize"> Votos <span>0</span></p>' +
+                                '<p class="bg-suceess bg-fecha-customize"> Publicado el: <span> ' + data[i].fields.modified + '</span>' +
+                                '</p></blockquote></div>';
                     }
-
-                    $('.datos').html(html);
+                    $("#datos").html(html);
                 }
+
             });
         }
     </script>
